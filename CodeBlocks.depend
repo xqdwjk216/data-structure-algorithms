@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1514140574 source:c:\workspace\data-structure-algorithms\main.cpp
+	<iostream>
+
+1546529953 source:c:\workspace\data-structure-algorithms\ds\src\binsearchdemo.cpp
+	<iostream>
+	"BinSearch.h"
+
+1546530065 source:c:\workspace\data-structure-algorithms\ds\src\selectsortdemo.cpp
+	<iostream>
+	"SelectSort.h"
+
