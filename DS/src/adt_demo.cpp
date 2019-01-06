@@ -3,6 +3,7 @@
 
 int main()
 {
-    Stack::demo();
+    char * str = "[{}][{]}";
+    Stack::demoBracket(str);
     return 0;
 }

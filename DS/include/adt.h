@@ -213,11 +213,13 @@ struct Stack {
     int destroyStack();
     int clearStack();
     int push(Node * node);
-    int pop();
+    Node * pop();
     int isEmpty();
-    int getTop();
+    Node * getTop();
     void traverse();
     static void demo();
+    /* 匹配括号 */
+    static void demoBracket(char * str);
 };
 
 int Stack::initStack(int size) {
@@ -245,11 +247,15 @@ int Stack::push(Node * node) {
     return length;
 }
 
-int Stack::pop() {
+Node * Stack::pop() {
     Node * tmp = top;
     top += sizeof(Node);
     length--;
-    return tmp->data;
+    return tmp;
+}
+
+Node * Stack::getTop() {
+    return top;
 }
 
 void Stack::traverse() {
@@ -258,6 +264,10 @@ void Stack::traverse() {
         printf("%d\n", cursor->data);
         cursor += sizeof(Node);
     }
+}
+
+int Stack::isEmpty() {
+    return length == 0;
 }
 
 void Stack::demo() {
@@ -281,6 +291,43 @@ void Stack::demo() {
     stack->push(node3);
 
     stack->traverse();
+
+    Node * tmp = stack->pop();
+    printf("%d\n", tmp->data);
+}
+
+void Stack::demoBracket(char * str) {
+    char * ptr = str;
+    Stack * stack = (Stack *)malloc(sizeof(Stack));
+    stack->initStack(30);
+    while (*ptr != '\0') {
+        if ( *ptr == '{' || *ptr == '[' || *ptr == '(' ) {
+            Node *  node = (Node *)malloc(sizeof(Node));
+            node->data = *ptr;
+            stack->push(node);
+        } else if ( *ptr == '}' || *ptr == ']' || *ptr == ')' ) {
+            Node * top = stack->getTop();
+            switch (*ptr) {
+            case '}':
+                if (top->data == '{') {
+                    stack->pop();
+                }
+                break;
+            case ']':
+                if (top->data == '[') {
+                    stack->pop();
+                }
+                break;
+            case ')':
+                if (top->data == '(') {
+                    stack->pop();
+                }
+                break;
+            }
+        }
+        ptr++;
+    }
+    printf("%s\n", stack->isEmpty() ? "match" : "not match");
 }
 
 #endif
