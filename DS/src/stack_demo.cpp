@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <adt.h>
+#include "stack.h"
 
 int main()
 {
