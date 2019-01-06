@@ -1,9 +1,10 @@
 #ifndef BUBBLESORT_H
 #define BUBBLESORT_H
-#include "Common.h"
+
+#include "common.h"
 
 template<typename T>
-void bubbleSort(T arr[], int length)
+void bubble_sort(T arr[], int length)
 {
     int currentKey = 0;
     do

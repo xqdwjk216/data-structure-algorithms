@@ -1,3 +1,6 @@
+#ifndef LIST_H
+#define LIST_H
+
 #include<iostream>
 #define SIZE 10
 using namespace std;
@@ -14,9 +17,9 @@ public:
     {
         this->size = size;
         this->m_data = new int[size];
-        for(int i=0; i<size; i++)
+        for (int i = 0; i < size; i++)
         {
-            *(m_data+i) = i;
+            *(m_data + i) = i;
             length++;
         }
     }
@@ -28,20 +31,20 @@ public:
 
     int getElement(int i)
     {
-        if(i > size)
+        if (i > size)
         {
             throw "exception";
         }
-        return *(m_data+i) ;
+        return *(m_data + i) ;
     }
 
-    friend ostream& operator<<(ostream &os,List *list)
+    friend ostream& operator<<(ostream &os, List *list)
     {
         int len = list->getLength();
-        for( int i = 0; i<len; i++)
+        for ( int i = 0; i < len; i++)
         {
             cout << list->getElement(i);
-            if(i<len-1)
+            if (i < len - 1)
             {
                 cout << ",";
             }
@@ -62,3 +65,5 @@ int main()
     cout << list  << endl;
 
 }
+
+#endif

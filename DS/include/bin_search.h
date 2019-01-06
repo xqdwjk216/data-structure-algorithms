@@ -1,5 +1,6 @@
 #ifndef BINSEARCH_H
 #define BINSEARCH_H
+
 #include<iostream>
 #include<stdio.h>
 using namespace std;
