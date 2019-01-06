@@ -3,6 +3,6 @@
 
 int main()
 {
-    LinkedList::demo();
+    Stack::demo();
     return 0;
 }

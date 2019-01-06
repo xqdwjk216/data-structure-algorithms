@@ -10,6 +10,7 @@ struct Node
     struct Node * next;
 } _node;
 
+/*=======单链表 START==========*/
 struct LinkedList
 {
     /* 数量 */
@@ -188,6 +189,98 @@ void LinkedList::demo() {
     list->deleteElem(1);
     printf("----输出----\n");
     list->traverse();
+}
+
+/*=======单链表 END==========*/
+
+/*=======栈 START==========*/
+/*
+    |----------6-----------|
+    |----------5-----------|
+    |----------4-----------|
+    |----------3-----------|
+    |----------2-----------|
+    |----------1-----------| <- top
+ */
+struct Stack {
+    /* 栈容量 */
+    int size;
+    /* 当前长度 */
+    int length;
+    /* 栈顶指针 */
+    Node * top;
+    int initStack(int size);
+    int destroyStack();
+    int clearStack();
+    int push(Node * node);
+    int pop();
+    int isEmpty();
+    int getTop();
+    void traverse();
+    static void demo();
+};
+
+int Stack::initStack(int size) {
+    assert(size > 0);
+    /* 分配连续空间并将top指向入口地址 */
+    top = (Node *)malloc(sizeof(Node) * size);
+    assert(top);
+    top += sizeof(Node) * (size - 1);
+    this->size = size;
+    length = 0;
+    return 1;
+}
+
+int Stack::destroyStack() {
+    free(top);
+    size = 0;
+    length  = 0;
+    return 1;
+}
+
+int Stack::push(Node * node) {
+    top -= sizeof(Node);
+    top->data = node->data;
+    length++;
+    return length;
+}
+
+int Stack::pop() {
+    Node * tmp = top;
+    top += sizeof(Node);
+    length--;
+    return tmp->data;
+}
+
+void Stack::traverse() {
+    Node * cursor = top;
+    while (length--) {
+        printf("%d\n", cursor->data);
+        cursor += sizeof(Node);
+    }
+}
+
+void Stack::demo() {
+    printf("====栈====\n");
+    printf("----push 5个元素----\n");
+
+    Stack * stack = (Stack *)malloc(sizeof(Stack));
+    stack->initStack(10);
+
+    Node * node = (Node *)malloc(sizeof(Node));
+    Node * node2 = (Node *)malloc(sizeof(Node));
+    Node * node3 = (Node *)malloc(sizeof(Node));
+
+    node->data = 1;
+    stack->push(node);
+
+    node2->data = 2;
+    stack->push(node2);
+
+    node3->data = 3;
+    stack->push(node3);
+
+    stack->traverse();
 }
 
 #endif
